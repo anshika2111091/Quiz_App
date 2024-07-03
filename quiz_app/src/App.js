@@ -5,6 +5,11 @@ import Trivia from "./components/Trivia";
 
 function App() {
   const [questionNumber,setQuestionNumber]=useState(1);
+  const [timeout,settimeout]=useState(true);
+  const [timevalue,setimevalue]=useState(30);
+  const [earned,setearned]=useState(0);
+  
+ 
   const data = [
     {
       id: 1,
@@ -93,16 +98,23 @@ function App() {
   ].reverse();
   return (
     <div className="App">
+     
    <div className="main">
+   <div className="score">You Earned: ${earned} </div>
     <div className="top">
-      <div className="timer">30</div>
+      <div className="timer">{timevalue}</div>
     </div>
-    <div className="bottom"> <Trivia/></div>
+    <div className="bottom">
+    <Trivia earned={earned} setearned={setearned} timevalue={timevalue} setimevalue={setimevalue} timeout={timeout}
+    data={data} settimeout={settimeout} 
+    setQuestionNumber={setQuestionNumber} questionNumber={questionNumber}
+   /></div>
    </div>
    <div className="pyramid">
     <ul className="moneyList">
      {moneyPyramid.map((m)=>(
-       <li className={questionNumber===m.id ? "moneyListItem active":"moneyListItem"}>
+      
+       <li className= {`moneyListItem ${(questionNumber)===m.id ? "active":""}`} >
        <span className="moneyListItemNumber">{m.id}</span>
        <span className="moneyListItemAmount">{m.amount}</span>
      </li>

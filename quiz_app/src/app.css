@@ -12,6 +12,9 @@ flex-direction: column;
     background:linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230) , url("./assets/bg.jpg") center;
 
 }
+.score{
+    padding: 20px;
+}
 .top{
     height: 50%;
     display: flex;
@@ -75,33 +78,34 @@ margin:0 10px 20px 10px;
 .answer.active{
     background: mediumblue;
 }
-.answer .correct{
+.correct{
     animation: correct 3s ease forwards;
 }
-@keyframes correct {
+
+@keyframes correct{
     0%,22%,42%{
-        background-color: mediumblue;
+        background:mediumblue;
     }
     20%,40%,60%{
         background:linear-gradient(#0e0124,#22074d) ;
     }
-    62%{
-        background: greenyellow;
+    62%,100%{
+        background:green;
     }
     
 }
-.answer .wrong{
-    animation: wrong 3s ease forwards;
+.wrong{
+    animation:wrong 3s ease forwards;
 }
-@keyframes wrong {
+@keyframes wrong{
     0%,22%,42%{
-        background-color: mediumblue;
+        background:mediumblue;
     }
     20%,40%,60%{
         background:linear-gradient(#0e0124,#22074d) ;
     }
-    62%{
-        background: crimson;
+    62%,100%{
+        background:crimson;
     }
     
 }

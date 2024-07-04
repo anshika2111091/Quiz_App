@@ -1,75 +1,72 @@
 
 import { useState,useEffect } from "react";
+import useSound from 'use-sound';
+import play from "../assets/play.mp3";
+import correct from "../assets/correct.mp3";
+import wrong from "../assets/wrong.mp3";
 
 
-const Trivia = ({earned,setearned,timevalue,setimevalue,timeout,data,settimeout,setQuestionNumber,questionNumber}) => {
-  const [question,setQuestion]=useState(data[questionNumber-1]);
+const Trivia = ({data,setStop,setQuestionNumber,questionNumber}) => {
 
-const [selectedanswer,setSelectedanswer]=useState(null);
+  const [question,setQuestion]=useState(null);
+  const [selectedAnswer,setSelectedAnswer]=useState(null);
+  const [className,setClassName]=useState("answer");
+  const [letsPlay]= useSound(play);
+  const [correctAnswer]= useSound(correct);
+  const [wrongAnswer]= useSound(wrong);
 
   useEffect(()=>{
+    letsPlay();
+  },[letsPlay]);
 
-    setQuestion(data[questionNumber-1]);
-   
-    
-    setSelectedanswer(null);
 
+  useEffect(()=>{
+setQuestion(data[questionNumber-1])
   },[data,questionNumber]);
-  useEffect(() => {
-    
-    let timerId;
-  
-   if(timeout){
-    if (timevalue > 0) {
+ 
+
+    const delay=(duration,callback)=>{
+      setTimeout(()=>{
+        callback();
+
+      },duration)
       
-      timerId = setInterval(() => {
-        setimevalue(prevTimevalue => prevTimevalue - 1); // Update timevalue
-      }, 1000);
     }
-   }
-  
-    return () => {
-      clearInterval(timerId); // Clear interval on component unmount or timevalue change
-    };
-  }, [timeout]); // Dependency array to run effect when timevalue changes
-  
+    const handleClick=(a)=>{
+      setSelectedAnswer(a);
+      setClassName("answer active");
+      delay(3000,()=>{ setClassName(a.correct ? "answer correct" : "answer wrong");})
+      delay(5000,()=>{
+        if(a.correct){
+          correctAnswer();
+          delay(1000,()=>{
+            setQuestionNumber(prev=>prev+1);
+          setSelectedAnswer(null);
 
- const handleClick=(a)=>{  
- setSelectedanswer(a);
- settimeout(false);
- 
- if (a.correct === true)
-   {
-    setearned(earned+((questionNumber)*100));
-    document.getElementById('correct-sound').play();
-  setTimeout(() => {
-    setQuestionNumber((prev) => prev+1);
-    document.getElementById('play-sound').play();
-    setimevalue(30);
-    settimeout(true);
-    document.getElementById('wait-sound').play();
-  
-  },3000);
- }
-else{
-  document.getElementById('wrong-sound').play();
+          })
+          
+        }
+        else{
+          wrongAnswer();
+          delay(1000,()=>{setStop(true);})
+          
+        }
+       })
+     
 
-}}
- 
-
+  }
   return (
+
+
 
     <div className="trivia">
 
-        <div className="question">{question.question}
-        <audio id="play-sound" src="play.mp3" preload="auto"></audio>
+        <div className="question">{question?.question}
         </div>
         <div className="answers">
-          <audio id="wait-sound" src="wait.mp3"></audio>
          {question?.answers.map((a)=>(
-           <div className={`answer ${selectedanswer===a ? (a.correct ? "correct":"wrong"):""}`} onDoubleClick={()=>handleClick(a)}>{a.text}
-           <audio id="wrong-sound" src="wrong.mp3" preload="auto"></audio>
-           <audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+           <div className={selectedAnswer === a ? className : "answer"} onClick={()=>handleClick(a)}>{a.text}
+      
            </div>
            
             

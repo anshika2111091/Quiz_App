@@ -1,13 +1,16 @@
 import "./app.css";
-import {useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import Trivia from "./components/Trivia";
+import Timer from "./components/Timer";
+import Start from "./components/Start";
 
 
 function App() {
+const [username,setUsername]=useState(null);
   const [questionNumber,setQuestionNumber]=useState(1);
-  const [timeout,settimeout]=useState(true);
-  const [timevalue,setimevalue]=useState(30);
-  const [earned,setearned]=useState(0);
+  const [stop,setStop]=useState(false);
+  const [earned,setEarned]=useState("$ 0")
+
   
  
   const data = [
@@ -79,7 +82,7 @@ function App() {
     },
   ];
 
-  const moneyPyramid=[
+  const moneyPyramid=useMemo(()=>[
     {id:1, amount:"$ 100"},
     {id:2, amount:"$ 200"},
     {id:3, amount:"$ 300"},
@@ -95,20 +98,33 @@ function App() {
     {id:13, amount:"$ 1300"},
     {id:14, amount:"$ 1400"},
     {id:15, amount:"$ 1500"},
-  ].reverse();
+  ].reverse()
+,[]);
+ useEffect(()=>{
+  questionNumber>1 &&
+  setEarned(moneyPyramid.find((m)=>m.id===questionNumber-1).amount);
+
+ },[moneyPyramid,questionNumber])
   return (
     <div className="App">
-     
-   <div className="main">
-   <div className="score">You Earned: ${earned} </div>
-    <div className="top">
-      <div className="timer">{timevalue}</div>
+    {username?(
+      <>
+      <div className="main">
+  {stop ? <div className="earn"><h1 className="earn">You Earned : {earned}</h1></div> :(
+    <>
+     <div className="top">
+      <div className="timer"><Timer setStop={setStop} questionNumber={questionNumber}/></div>
     </div>
     <div className="bottom">
-    <Trivia earned={earned} setearned={setearned} timevalue={timevalue} setimevalue={setimevalue} timeout={timeout}
-    data={data} settimeout={settimeout} 
+    <Trivia
+    data={data} setStop={setStop} 
     setQuestionNumber={setQuestionNumber} questionNumber={questionNumber}
    /></div>
+
+
+    </>
+  )}
+   
    </div>
    <div className="pyramid">
     <ul className="moneyList">
@@ -121,7 +137,10 @@ function App() {
    
      ))}
     </ul>
-   </div>
+   </div></>
+    ):<Start setUsername={setUsername}/>}
+     
+   
     </div>
   );
 }

@@ -80,6 +80,248 @@ const [username,setUsername]=useState(null);
         },
       ],
     },
+    {
+      id: 4,
+      question: "Current Railway Minister of India is",
+      answers: [
+        {
+          text: "Mamta Banarjee",
+          correct: false,
+        },
+        {
+          text: "Ram Vilash",
+          correct: false,
+        },
+        {
+          text: "Ashwani Vaishnaw",
+          correct: true,
+        },
+        {
+          text: "Piyush Goyal",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 5,
+      question: "Which God is also known as 'Gauri Nandan'",
+      answers: [
+        {
+          text: "Agni",
+          correct: false,
+        },
+        {
+          text: "Indra",
+          correct: false,
+        },
+        {
+          text: "Hanuman",
+          correct: false,
+        },
+        {
+          text: "Ganesha",
+          correct: true,
+        },
+      ],
+    },
+    {
+      id: 6,
+      question: "What does not grow on tree according to a popular Hindi saying?",
+      answers: [
+        {
+          text: "Money",
+          correct: true,
+        },
+        {
+          text: "Flowers",
+          correct: false,
+        },
+        {
+          text: "Leaves",
+          correct: false,
+        },
+        {
+          text: "Fruits",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 7,
+      question: "Which city is known as Pink City in India?",
+      answers: [
+        {
+          text: "Banglore",
+          correct: false,
+        },
+        {
+          text: "Mysore",
+          correct: false,
+        },
+        {
+          text: "Jaipur",
+          correct: true,
+        },
+        {
+          text: "Kochi",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 8,
+      question: "Who wrote India's National Anthem?",
+      answers: [
+        {
+          text: "Rabindranath Tagore",
+          correct: true,
+        },
+        {
+          text: "Lal bahadur Shastri",
+          correct: false,
+        },
+        {
+          text: "RK Narayan",
+          correct: false,
+        },
+        {
+          text: "Chetan Bhagat",
+          correct: true,
+        },
+      ],
+    },
+    {
+      id: 9,
+      question: "Which Mughal Emperor was deported to Rangoon by the British?",
+      answers: [
+        {
+          text: "Akbar Shah ",
+          correct: false,
+        },
+        {
+          text: "Shah Jahan",
+          correct: false,
+        },
+        {
+          text: "Bahadur Shah I",
+          correct: false,
+        },
+        {
+          text: "Bahadur Shah II",
+          correct: true,
+        },
+      ],
+    },
+    {
+      id: 10,
+      question: "Which city is known as the 'Silicon Valley of India'",
+      answers: [
+        {
+          text: "Chennai ",
+          correct: false,
+        },
+        {
+          text: "Bangalore",
+          correct: true,
+        },
+        {
+          text: "Delhi",
+          correct: false,
+        },
+        {
+          text: "Mumbai",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 11,
+      question: "Which former Indian President died as a result of a road accident",
+      answers: [
+        {
+          text: "Giani  Zail Singh ",
+          correct: true,
+        },
+        {
+          text: "Rajendra Prasad",
+          correct: false,
+        },
+        {
+          text: "Fqqruddin Ali Ahmed",
+          correct: false,
+        },
+        {
+          text: "R.Venkatraman",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 12,
+      question: "Which Indian  city hosts Indian movie industry",
+      answers: [
+        {
+          text: "Chennai ",
+          correct: false,
+        },
+        {
+          text: "Bangalore",
+          correct: false,
+        },
+        {
+          text: "Delhi",
+          correct: false,
+        },
+        {
+          text: "Mumbai",
+          correct: true,
+        },
+      ],
+    },
+    {
+      id: 13,
+      question: "Which city is known as the 'Silicon Valley of India'",
+      answers: [
+        {
+          text: "Chennai ",
+          correct: false,
+        },
+        {
+          text: "Bangalore",
+          correct: true,
+        },
+        {
+          text: "Delhi",
+          correct: false,
+        },
+        {
+          text: "Mumbai",
+          correct: false,
+        },
+      ],
+    },
+    {
+      id: 14,
+      question: "The fine step-well complex of  'Agrasen Ki Baoli' is located at",
+      answers: [
+        {
+          text: "New-Delhi ",
+          correct: true,
+        },
+        {
+          text: "Agra",
+          correct: false,
+        },
+        {
+          text: "Gwalior",
+          correct: false,
+        },
+        {
+          text: "Amritsar",
+          correct: false,
+        },
+      ],
+    }
   ];
 
   const moneyPyramid=useMemo(()=>[
